@@ -1,0 +1,55 @@
+name: pis
+
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    environment:
+      POSTGRES_DB: pis
+      POSTGRES_PASSWORD: pis2026
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./sql/pis_dump.sql:/docker-entrypoint-initdb.d/20_pis_dump.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -U postgres -d pis"]
+      interval: 5s
+      retries: 30
+
+  geoserver:
+    image: docker.osgeo.org/geoserver:3.0.2
+    environment:
+      SKIP_DEMO_DATA: "true"
+    ports:
+      - "8081:8080"
+    volumes:
+      - geoserver_data:/opt/geoserver_data
+      - ./data/shapefiles:/data/shapefiles
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/geoserver/web/ > /dev/null"]
+      interval: 10s
+      retries: 30
+
+  geoserver-setup:
+    image: curlimages/curl:8.11.1
+    entrypoint: ["sh", "/geoserver/setup.sh"]
+    volumes:
+      - ./geoserver:/geoserver:ro
+    depends_on:
+      geoserver:
+        condition: service_healthy
+
+  app:
+    build: .
+    environment:
+      GEOSERVER_URL: http://geoserver:8080
+    ports:
+      - "8000:4173"
+    depends_on:
+      geoserver-setup:
+        condition: service_completed_successfully
+
+volumes:
+  pgdata:
+  geoserver_data:

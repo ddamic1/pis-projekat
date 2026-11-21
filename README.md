@@ -2,7 +2,15 @@
 
 Prikaz prostornih podataka Srbije u OpenLayers-u. Osnovne mape su OpenStreetMap, Google Maps i Yandex, a slojevi dolaze sa GeoServera: shapefile-ovi preko WMS-a i tabele iz PostGIS baze preko WFS-a.
 
-## Pokretanje
+Za Google Maps treba API ključ: kopirati `.env.example` u `.env.local` i upisati ključ. Bez ključa je izbor Google mape onemogućen.
+
+## Pokretanje preko Docker-a
+
+`start.cmd` podiže bazu, GeoServer i aplikaciju i otvara http://localhost:8000, a `stop.cmd` ih zaustavlja. Isto rade `docker compose up -d --build` i `docker compose down`.
+
+Pri prvom pokretanju baza se puni iz `sql/pis_dump.sql`, a `geoserver/setup.sh` preko REST API-ja pravi radni prostor, skladišta, slojeve i stilove. GeoServer je na http://localhost:8081/geoserver (admin / geoserver). Podaci ostaju u Docker volume-ima, a `docker compose down -v` ih briše.
+
+## Pokretanje bez Docker-a
 
 1. Baza:
 
@@ -13,9 +21,7 @@ Prikaz prostornih podataka Srbije u OpenLayers-u. Osnovne mape su OpenStreetMap,
 
 2. GeoServer: radni prostor `pis`, jedno skladište za folder `data/shapefiles` (kodna strana windows-1250) i jedno za bazu `pis` (uključiti Validate connections). Stilovi su u `geoserver/styles`.
 
-3. Za Google Maps treba API ključ: kopirati `.env.example` u `.env.local` i upisati ključ.
-
-4. Aplikacija:
+3. Aplikacija:
 
    ```
    npm install
@@ -29,4 +35,4 @@ Prikaz prostornih podataka Srbije u OpenLayers-u. Osnovne mape su OpenStreetMap,
 - `src` kod aplikacije
 - `sql` skripte za bazu
 - `data/shapefiles` shapefile-ovi
-- `geoserver/styles` SLD stilovi
+- `geoserver` SLD stilovi i skripta za podešavanje

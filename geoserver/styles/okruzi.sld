@@ -8,7 +8,7 @@
       </PolygonSymbolizer>
       <TextSymbolizer>
         <Label><ogc:PropertyName>Naziv</ogc:PropertyName></Label>
-        <Font><CssParameter name="font-family">Arial</CssParameter><CssParameter name="font-size">10</CssParameter><CssParameter name="font-weight">bold</CssParameter></Font>
+        <Font><CssParameter name="font-family">SansSerif</CssParameter><CssParameter name="font-size">10</CssParameter><CssParameter name="font-weight">bold</CssParameter></Font>
         <LabelPlacement><PointPlacement><AnchorPoint><AnchorPointX>0.5</AnchorPointX><AnchorPointY>0.5</AnchorPointY></AnchorPoint></PointPlacement></LabelPlacement>
         <Halo><Radius>1.5</Radius><Fill><CssParameter name="fill">#ffffff</CssParameter></Fill></Halo>
         <Fill><CssParameter name="fill">#1d3557</CssParameter></Fill>

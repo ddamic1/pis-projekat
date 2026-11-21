@@ -32,7 +32,6 @@ const accuracyStyle = new Style({
   stroke: new Stroke({ color: '#ff9800', width: 1.5, lineDash: [6, 4] }),
   zIndex: 0,
 });
-const number = new Intl.NumberFormat('sr-Latn', { maximumFractionDigits: 1 });
 
 const nearbySource = new VectorSource();
 const nearbyLayer = new VectorLayer({
@@ -304,7 +303,7 @@ map.on('singleclick', async (evt) => {
       const json = await (await fetch(url)).json();
       if (json.features && json.features.length) {
         const props = json.features[0].properties;
-        showPopup(evt.coordinate, cfg.popup, cfg.info.map(([k, label, convert]) => [label, convert ? number.format(convert(props[k])) : props[k]]));
+        showPopup(evt.coordinate, cfg.popup, cfg.info.map(([k, label, convert]) => [label, convert ? convert(props[k]) : props[k]]));
         return;
       }
     } catch (e) {
