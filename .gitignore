@@ -1,0 +1,6 @@
+node_modules
+dist
+*.local
+.vite
+data/shapefiles/*.qix
+data/shapefiles/*.fix

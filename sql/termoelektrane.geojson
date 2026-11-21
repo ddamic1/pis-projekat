@@ -1,0 +1,21 @@
+{
+"type": "FeatureCollection",
+"name": "eco_os_termoelektrane",
+"features": [
+{"type":"Feature","properties":{"id_objekta":1,"id_1":1,"nivo_1":4.0,"kod":"B11","ugao_1":91.463236789199996,"provereno":1.0,"oid":8,"naziv":"Novi Sad","snagagen":255.0,"snagaprag":208.0},"geometry":{"type":"Point","coordinates":[19.893881,45.2674685]}},
+{"type":"Feature","properties":{"id_objekta":2,"id_1":3,"nivo_1":4.0,"kod":"B11","ugao_1":108.13010772600001,"provereno":1.0,"oid":6,"naziv":"Nikola Tesla A","snagagen":1650.5,"snagaprag":1502.0},"geometry":{"type":"Point","coordinates":[20.1607919,44.6718216]}},
+{"type":"Feature","properties":{"id_objekta":3,"id_1":2,"nivo_1":4.0,"kod":"B11","ugao_1":90.614038810599993,"provereno":1.0,"oid":7,"naziv":"Nikola Tesla B","snagagen":1240.0,"snagaprag":1160.0},"geometry":{"type":"Point","coordinates":[20.0093402,44.6556454]}},
+{"type":"Feature","properties":{"id_objekta":4,"id_1":13,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":1.0,"oid":11,"naziv":"TO Zrenjanin","snagagen":120.0,"snagaprag":111.0},"geometry":{"type":"Point","coordinates":[20.4082743,45.3552353]}},
+{"type":"Feature","properties":{"id_objekta":5,"id_1":10,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":1.0,"oid":10,"naziv":"TO Beograd","snagagen":96.0,"snagaprag":84.0},"geometry":{"type":"Point","coordinates":[20.4115282,44.8032734]}},
+{"type":"Feature","properties":{"id_objekta":6,"id_1":12,"nivo_1":4.0,"kod":"B11","ugao_1":35.640571323800003,"provereno":1.0,"oid":9,"naziv":"Sremska Mitrovica","snagagen":50.5,"snagaprag":45.0},"geometry":{"type":"Point","coordinates":[19.6532787,44.9648736]}},
+{"type":"Feature","properties":{"id_objekta":7,"id_1":7,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":0.0,"oid":0,"naziv":"Kolubara A","snagagen":270.0,"snagaprag":245.0},"geometry":{"type":"Point","coordinates":[20.295206,44.4843503]}},
+{"type":"Feature","properties":{"id_objekta":8,"id_1":11,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":1.0,"oid":5,"naziv":"Morava","snagagen":125.0,"snagaprag":108.0},"geometry":{"type":"Point","coordinates":[21.163456,44.2240314]}},
+{"type":"Feature","properties":{"id_objekta":9,"id_1":8,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":1.0,"oid":2,"naziv":"Kosovo B","snagagen":678.0,"snagaprag":618.0},"geometry":{"type":"Point","coordinates":[21.0558277,42.6959886]}},
+{"type":"Feature","properties":{"id_objekta":10,"id_1":9,"nivo_1":4.0,"kod":"B11","ugao_1":34.846245044,"provereno":1.0,"oid":1,"naziv":"Kosovo A","snagagen":800.0,"snagaprag":617.0},"geometry":{"type":"Point","coordinates":[21.092424,42.6779396]}},
+{"type":"Feature","properties":{"id_objekta":11,"id_1":5,"nivo_1":4.0,"kod":"B11","ugao_1":317.59555425399998,"provereno":1.0,"oid":4,"naziv":"Kostolac B","snagagen":698.0,"snagaprag":640.0},"geometry":{"type":"Point","coordinates":[21.2512862,44.7111458]}},
+{"type":"Feature","properties":{"id_objekta":12,"id_1":4,"nivo_1":4.0,"kod":"B11","ugao_1":107.117279272,"provereno":1.0,"oid":3,"naziv":"Kostolac A","snagagen":310.0,"snagaprag":281.0},"geometry":{"type":"Point","coordinates":[21.1746769,44.7225015]}},
+{"type":"Feature","properties":{"id_objekta":13,"id_1":0,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":2.0,"oid":0,"naziv":null,"snagagen":0.0,"snagaprag":0.0},"geometry":{"type":"Point","coordinates":[20.2325953,44.5042052]}},
+{"type":"Feature","properties":{"id_objekta":16,"id_1":14,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":1.0,"oid":0,"naziv":null,"snagagen":0.0,"snagaprag":0.0},"geometry":{"type":"Point","coordinates":[19.192785,44.5239907]}},
+{"type":"Feature","properties":{"id_objekta":20,"id_1":15,"nivo_1":4.0,"kod":"B11","ugao_1":0.0,"provereno":1.0,"oid":0,"naziv":"0","snagagen":0.0,"snagaprag":0.0},"geometry":{"type":"Point","coordinates":[22.1024083,44.1108347]}}
+]
+}

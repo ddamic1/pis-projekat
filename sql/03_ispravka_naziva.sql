@@ -1,0 +1,13 @@
+UPDATE hidroelektrane SET naziv = 'Međuvršje' WHERE naziv = 'Me?uvr?je';
+UPDATE hidroelektrane SET naziv = 'Potpeć' WHERE naziv = 'Potpe?';
+UPDATE hidroelektrane SET naziv = 'Sopoćani' WHERE naziv = 'Sopo?ani';
+UPDATE hidroelektrane SET naziv = 'Sićevo' WHERE naziv = 'Si?evo';
+UPDATE hidroelektrane SET naziv = 'Široke Luke' WHERE naziv = '?iroke Luke';
+UPDATE hidroelektrane SET naziv = 'Visočka Ržana' WHERE naziv = 'Viso?ka R?ana';
+UPDATE hidroelektrane SET naziv = 'Kožnjar' WHERE naziv = 'Ko?njar';
+UPDATE hidroelektrane SET naziv = 'Bajina Bašta' WHERE naziv = 'Bajina Ba?ta';
+UPDATE hidroelektrane SET naziv = 'RHE Bajina Bašta' WHERE naziv = 'RHE Bajina Ba?ta';
+UPDATE hidroelektrane SET naziv = 'Bučje' WHERE naziv = 'Bu?je';
+UPDATE hidroelektrane SET naziv = 'Vučje' WHERE naziv = 'Vu?je';
+UPDATE hidroelektrane SET naziv = 'Ovčar Banja' WHERE naziv = 'Ov?ar Banja';
+UPDATE termoelektrane SET naziv = 'Nepoznata termoelektrana' WHERE naziv IS NULL OR naziv IN ('', '0');

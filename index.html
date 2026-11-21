@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prostorni podaci Srbije</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <aside id="sidebar">
+      <header>
+        <h1>Prostorni podaci Srbije</h1>
+        <p class="sub">OpenLayers, GeoServer, PostGIS</p>
+      </header>
+
+      <section>
+        <h2>Osnovna mapa</h2>
+        <div id="basemaps" class="list"></div>
+      </section>
+
+      <section>
+        <h2>Slojevi iz shapefile-ova (WMS)</h2>
+        <div id="wms-layers" class="list"></div>
+      </section>
+
+      <section>
+        <h2>Slojevi iz PostGIS baze (WFS)</h2>
+        <div id="wfs-layers" class="list"></div>
+      </section>
+
+      <section>
+        <h2>Filteri</h2>
+        <div class="filter">
+          <div class="filter-head"><span>Snaga elektrana</span><output id="power-value">sve</output></div>
+          <input id="power" type="range" min="0" max="100" value="0" />
+          <p id="power-note" class="filter-note"></p>
+        </div>
+        <div class="filter">
+          <div class="filter-head"><span>Granični prelazi prema</span></div>
+          <div id="countries" class="chips"></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Objekti u krugu</h2>
+        <div class="filter">
+          <div class="filter-head"><span>Poluprečnik</span><output id="radius-value">50 km</output></div>
+          <input id="radius" type="range" min="5" max="200" step="5" value="50" />
+        </div>
+        <div class="buttons">
+          <button id="btn-pick" type="button">Izaberi tačku na mapi</button>
+          <button id="btn-clear" type="button" hidden>Ukloni krug</button>
+        </div>
+        <p id="nearby-note" class="filter-note"></p>
+        <ul id="nearby"></ul>
+      </section>
+
+      <section>
+        <h2>Pretraga</h2>
+        <input id="search" type="search" placeholder="naziv elektrane ili prelaza" autocomplete="off" />
+        <ul id="search-results"></ul>
+      </section>
+
+      <section>
+        <h2>Alati</h2>
+        <div class="buttons">
+          <button id="btn-serbia" type="button">Prikaži celu Srbiju</button>
+          <button id="btn-locate" type="button">Moja lokacija</button>
+        </div>
+        <div class="coords">
+          <span>Kursor (WGS84):</span>
+          <span id="coords">-</span>
+        </div>
+      </section>
+
+      <section>
+        <h2>Legenda</h2>
+        <div id="legend"></div>
+      </section>
+    </aside>
+
+    <main>
+      <div id="gmap" hidden></div>
+      <div id="map"></div>
+      <div id="popup" class="popup">
+        <button id="popup-close" type="button">×</button>
+        <div id="popup-content"></div>
+      </div>
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
