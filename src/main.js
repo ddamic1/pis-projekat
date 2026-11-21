@@ -101,7 +101,10 @@ const wmsEl = document.getElementById('wms-layers');
 wmsLayers.forEach((l) => {
   const cfg = l.get('cfg');
   layerRow(wmsEl, l, cfg);
-  countFeatures(cfg.name).then((n) => (document.getElementById(`count-${cfg.id}`).textContent = n ?? '?'));
+  const countEl = document.getElementById(`count-${cfg.id}`);
+  countFeatures(cfg.name)
+    .then((n) => (countEl.textContent = n ?? '?'))
+    .catch(() => (countEl.textContent = 'greška'));
 });
 const wfsEl = document.getElementById('wfs-layers');
 wfsLayers.forEach((l) => {

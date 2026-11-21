@@ -21,14 +21,14 @@ layer() {
   curl -sSf -u $A -X PUT -H "Content-Type: application/json" "$G/workspaces/pis/layers/$2" -d "{\"layer\": {\"defaultStyle\": {\"name\": \"$2\", \"workspace\": \"pis\"}}}" > /dev/null
 }
 
-post namespaces '{"namespace": {"prefix": "pis", "uri": "http://pis.ftn.uns.ac.rs"}}'
+post namespaces '{"namespace": {"prefix": "pis", "uri": "https://pis.ftn.uns.ac.rs"}}'
 
 post workspaces/pis/datastores '{"dataStore": {"name": "shapefiles", "type": "Directory of spatial files (shapefiles)",
   "connectionParameters": {"entry": [
     {"@key": "url", "$": "file:///data/shapefiles"},
     {"@key": "charset", "$": "windows-1250"},
     {"@key": "create spatial index", "$": "true"},
-    {"@key": "namespace", "$": "http://pis.ftn.uns.ac.rs"}]}}}'
+    {"@key": "namespace", "$": "https://pis.ftn.uns.ac.rs"}]}}}'
 
 post workspaces/pis/datastores '{"dataStore": {"name": "postgis", "type": "PostGIS",
   "connectionParameters": {"entry": [
@@ -42,7 +42,7 @@ post workspaces/pis/datastores '{"dataStore": {"name": "postgis", "type": "PostG
     {"@key": "Expose primary keys", "$": "true"},
     {"@key": "validate connections", "$": "true"},
     {"@key": "Test while idle", "$": "true"},
-    {"@key": "namespace", "$": "http://pis.ftn.uns.ac.rs"}]}}}'
+    {"@key": "namespace", "$": "https://pis.ftn.uns.ac.rs"}]}}}'
 
 layer shapefiles drzava "Državna granica Srbije" EPSG:31277
 layer shapefiles okruzi "Upravni okruzi" EPSG:31277

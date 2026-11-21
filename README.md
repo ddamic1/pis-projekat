@@ -10,6 +10,8 @@ Za Google Maps treba API ključ: kopirati `.env.example` u `.env.local` i upisat
 
 Pri prvom pokretanju baza se puni iz `sql/pis_dump.sql`, a `geoserver/setup.sh` preko REST API-ja pravi radni prostor, skladišta, slojeve i stilove. GeoServer je na http://localhost:8081/geoserver (admin / geoserver). Podaci ostaju u Docker volume-ima, a `docker compose down -v` ih briše.
 
+API ključ ne ulazi u Docker sliku. Docker Compose ga pri pokretanju prosleđuje kontejneru aplikacije iz `.env.local`, a kontejner tada gradi aplikaciju, pa Google Maps radi i ovde. Bez `.env.local` aplikacija radi bez Google mape.
+
 ## Pokretanje bez Docker-a
 
 1. Baza:

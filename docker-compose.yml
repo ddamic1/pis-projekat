@@ -42,6 +42,9 @@ services:
 
   app:
     build: .
+    env_file:
+      - path: .env.local
+        required: false
     environment:
       GEOSERVER_URL: http://geoserver:8080
     ports:
