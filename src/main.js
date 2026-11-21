@@ -14,7 +14,7 @@ import { Style, Fill, Stroke, Circle as CircleStyle } from 'ol/style';
 
 import { basemaps, showBasemap } from './basemaps';
 import { attachGoogle } from './google';
-import { wmsLayers, wfsLayers, highlightStyle, legendUrl, countFeatures, filters, passesFilter } from './layers';
+import { wmsLayers, wfsLayers, highlightStyle, layerSymbol, countFeatures, filters, passesFilter } from './layers';
 import { SERBIA_EXTENT_4326, WMS_LAYERS, WFS_LAYERS } from './config';
 
 const serbiaExtent = transformExtent(SERBIA_EXTENT_4326, 'EPSG:4326', 'EPSG:3857');
@@ -73,7 +73,8 @@ for (const b of basemaps) {
 
 function layerRow(container, layer, cfg) {
   const row = document.createElement('div');
-  row.innerHTML = `<label><input type="checkbox" checked> <span class="swatch" style="background:${cfg.color}"></span> ${cfg.title} <span class="count" id="count-${cfg.id}">...</span></label>`;
+  row.innerHTML = `<label><input type="checkbox" checked> ${cfg.title} <span class="count" id="count-${cfg.id}">...</span></label>`;
+  row.querySelector('input').after(layerSymbol(cfg));
   row.querySelector('input[type=checkbox]').addEventListener('change', (e) => {
     layer.setVisible(e.target.checked);
     refreshNearby();
@@ -119,7 +120,7 @@ const legendEl = document.getElementById('legend');
 for (const cfg of [...WMS_LAYERS, ...WFS_LAYERS]) {
   const item = document.createElement('div');
   item.className = 'item';
-  item.innerHTML = `<img src="${legendUrl(cfg.name)}" alt=""> <span>${cfg.title}</span>`;
+  item.append(layerSymbol(cfg), cfg.title);
   legendEl.appendChild(item);
 }
 
@@ -246,7 +247,8 @@ function refreshNearby() {
   nearbyNoteEl.textContent = hits.length ? `Pronađeno objekata: ${hits.length}` : 'U zadatom krugu nema objekata.';
   for (const h of hits) {
     const li = document.createElement('li');
-    li.innerHTML = `<span class="swatch" style="background:${h.cfg.color}"></span>${h.f.get('naziv')}<small>${h.distance.toFixed(1)} km</small>`;
+    li.innerHTML = `${h.f.get('naziv')}<small>${h.distance.toFixed(1)} km</small>`;
+    li.prepend(layerSymbol(h.cfg));
     li.addEventListener('click', () => showFeature(h.f, h.cfg));
     nearbyEl.appendChild(li);
   }

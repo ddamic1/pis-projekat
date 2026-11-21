@@ -3,6 +3,8 @@ import VectorLayer from 'ol/layer/Vector';
 import ImageWMS from 'ol/source/ImageWMS';
 import VectorSource from 'ol/source/Vector';
 import GeoJSON from 'ol/format/GeoJSON';
+import Point from 'ol/geom/Point';
+import { toContext } from 'ol/render';
 import { Style, Fill, Stroke, Circle as CircleStyle, RegularShape } from 'ol/style';
 import { WMS_URL, WFS_URL, WMS_LAYERS, WFS_LAYERS } from './config';
 
@@ -52,8 +54,23 @@ export const wfsLayers = WFS_LAYERS.map((cfg) => {
   return layer;
 });
 
-export function legendUrl(layerName) {
-  return `${WMS_URL}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&FORMAT=image/png&WIDTH=16&HEIGHT=16&LAYER=${layerName}&TRANSPARENT=true`;
+function legendUrl(layerName) {
+  return `${WMS_URL}?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetLegendGraphic&FORMAT=image/png&WIDTH=20&HEIGHT=20&LAYER=${layerName}&TRANSPARENT=true`;
+}
+
+export function layerSymbol(cfg) {
+  if (!cfg.shape) {
+    const img = new Image(20, 20);
+    img.src = legendUrl(cfg.name);
+    img.alt = '';
+    img.className = cfg.geometry;
+    return img;
+  }
+  const canvas = document.createElement('canvas');
+  const render = toContext(canvas.getContext('2d'), { size: [20, 20] });
+  render.setStyle(pointStyle(cfg.color, cfg.shape));
+  render.drawGeometry(new Point([10, 10]));
+  return canvas;
 }
 
 export async function countFeatures(layerName) {

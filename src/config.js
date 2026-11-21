@@ -14,9 +14,9 @@ const ekoregion = (code) => EKOREGIONI[code];
 const vrsta = (awb) => (awb === 'yes' ? 'kanal' : 'reka');
 
 export const WMS_LAYERS = [
-  { id: 'drzava', name: 'pis:drzava', title: 'Državna granica', popup: 'Država', color: '#b5121b', info: [['naziv', 'Naziv'], ['povrsina', 'Površina (km²)', km2], ['obim', 'Obim (km)', km]] },
-  { id: 'okruzi', name: 'pis:okruzi', title: 'Upravni okruzi', popup: 'Upravni okrug', color: '#1d3557', info: [['Naziv', 'Naziv'], ['Area', 'Površina (km²)', km2]] },
-  { id: 'reke', name: 'pis:reke', title: 'Reke', popup: 'Vodotok', color: '#1f6fb2', info: [['naziv', 'Naziv'], ['awb', 'Vrsta', vrsta], ['ekoregioni', 'Ekoregion', ekoregion]] },
+  { id: 'drzava', name: 'pis:drzava', title: 'Državna granica', popup: 'Država', color: '#b5121b', geometry: 'polygon', info: [['naziv', 'Naziv'], ['povrsina', 'Površina (km²)', km2], ['obim', 'Obim (km)', km]] },
+  { id: 'okruzi', name: 'pis:okruzi', title: 'Upravni okruzi', popup: 'Upravni okrug', color: '#1d3557', geometry: 'polygon', info: [['Naziv', 'Naziv'], ['Area', 'Površina (km²)', km2]] },
+  { id: 'reke', name: 'pis:reke', title: 'Reke', popup: 'Vodotok', color: '#1f6fb2', geometry: 'line', info: [['naziv', 'Naziv'], ['awb', 'Vrsta', vrsta], ['ekoregioni', 'Ekoregion', ekoregion]] },
 ];
 
 export const WFS_LAYERS = [
