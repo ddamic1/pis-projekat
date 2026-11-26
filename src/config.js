@@ -12,6 +12,7 @@ const km = (m) => number.format(m / 1e3);
 const EKOREGIONI = { ER_5Ser: 'Dinarski zapadni Balkan', ER_7: 'Istočni Balkan', ER_10: 'Karpati', ER_11: 'Panonska nizija' };
 const ekoregion = (code) => EKOREGIONI[code];
 const vrsta = (awb) => (awb === 'yes' ? 'kanal' : 'reka');
+const snaga = (mw) => (Number(mw) > 0 ? mw : 'nema podatka');
 
 export const WMS_LAYERS = [
   { id: 'drzava', name: 'pis:drzava', title: 'Državna granica', popup: 'Država', color: '#b5121b', geometry: 'polygon', info: [['naziv', 'Naziv'], ['povrsina', 'Površina (km²)', km2], ['obim', 'Obim (km)', km]] },
@@ -28,7 +29,7 @@ export const WFS_LAYERS = [
     color: '#1e88e5',
     shape: 'circle',
     power: 'snaga',
-    fields: [['naziv', 'Naziv'], ['kod', 'Kod'], ['snaga', 'Instalisana snaga (MW)'], ['nivo', 'Nivo']],
+    fields: [['naziv', 'Naziv'], ['kod', 'Kod'], ['snaga', 'Instalisana snaga (MW)', snaga], ['nivo', 'Nivo']],
   },
   {
     id: 'termoelektrane',
@@ -38,7 +39,7 @@ export const WFS_LAYERS = [
     color: '#e53935',
     shape: 'square',
     power: 'snagagen',
-    fields: [['naziv', 'Naziv'], ['kod', 'Kod'], ['snagagen', 'Snaga generatora (MW)'], ['snagaprag', 'Prag snage (MW)']],
+    fields: [['naziv', 'Naziv'], ['kod', 'Kod'], ['snagagen', 'Snaga generatora (MW)', snaga], ['snagaprag', 'Prag snage (MW)', snaga]],
   },
   {
     id: 'granicni_prelazi',

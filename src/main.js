@@ -193,7 +193,7 @@ function showPopup(coordinate, title, rows, note) {
 }
 
 function featureRows(cfg, props) {
-  return cfg.fields.map(([key, label]) => [label, props[key]]);
+  return cfg.fields.map(([key, label, convert]) => [label, convert ? convert(props[key]) : props[key]]);
 }
 
 let highlighted = null;
