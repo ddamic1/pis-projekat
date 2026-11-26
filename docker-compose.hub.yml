@@ -1,0 +1,54 @@
+name: pis
+
+services:
+  db:
+    image: dejandamic597/pis-db
+    environment:
+      POSTGRES_DB: pis
+      POSTGRES_PASSWORD: pis2026
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -U postgres -d pis"]
+      interval: 5s
+      retries: 30
+
+  geoserver:
+    image: dejandamic597/pis-geoserver
+    environment:
+      SKIP_DEMO_DATA: "true"
+    ports:
+      - "8081:8080"
+    volumes:
+      - geoserver_data:/opt/geoserver_data
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/geoserver/web/ > /dev/null"]
+      interval: 10s
+      retries: 30
+
+  geoserver-setup:
+    image: dejandamic597/pis-geoserver
+    entrypoint: ["sh", "/geoserver/setup.sh"]
+    depends_on:
+      geoserver:
+        condition: service_healthy
+
+  app:
+    image: dejandamic597/pis-app
+    env_file:
+      - path: .env.local
+        required: false
+    environment:
+      GEOSERVER_URL: http://geoserver:8080
+    ports:
+      - "8000:4173"
+    depends_on:
+      geoserver-setup:
+        condition: service_completed_successfully
+
+volumes:
+  pgdata:
+  geoserver_data:

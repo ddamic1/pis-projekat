@@ -12,6 +12,31 @@ Pri prvom pokretanju baza se puni iz `sql/pis_dump.sql`, a `geoserver/setup.sh` 
 
 API ključ ne ulazi u Docker sliku. Docker Compose ga pri pokretanju prosleđuje kontejneru aplikacije iz `.env.local`, a kontejner tada gradi aplikaciju, pa Google Maps radi i ovde. Bez `.env.local` aplikacija radi bez Google mape.
 
+## Pokretanje sa Docker Hub-a
+
+Slike su objavljene na Docker Hub-u, pa je za pokretanje dovoljan fajl `docker-compose.hub.yml`, bez izvornog koda:
+
+```
+docker compose -f docker-compose.hub.yml up -d
+```
+
+Aplikacija je na http://localhost:8000, a zaustavlja se sa `docker compose -f docker-compose.hub.yml down`. Za Google Maps u isti folder treba staviti `.env.local` sa ključem.
+
+- `dejandamic597/pis-app` aplikacija
+- `dejandamic597/pis-db` PostGIS sa podacima iz `sql/pis_dump.sql`
+- `dejandamic597/pis-geoserver` GeoServer sa shapefile-ovima, stilovima i skriptom za podešavanje
+
+Slike se prave i šalju ovako:
+
+```
+docker build -t dejandamic597/pis-app .
+docker build -t dejandamic597/pis-db sql
+docker build -t dejandamic597/pis-geoserver -f geoserver/Dockerfile .
+docker push dejandamic597/pis-app
+docker push dejandamic597/pis-db
+docker push dejandamic597/pis-geoserver
+```
+
 ## Pokretanje bez Docker-a
 
 1. Baza:

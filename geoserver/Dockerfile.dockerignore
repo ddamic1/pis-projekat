@@ -1,0 +1,6 @@
+*
+!data/shapefiles
+!geoserver/setup.sh
+!geoserver/styles
+data/shapefiles/*.qix
+data/shapefiles/*.fix
